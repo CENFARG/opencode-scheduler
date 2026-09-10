@@ -954,7 +954,9 @@ function getWindowsInvocation(job: Job): JobInvocation {
 
 function buildWindowsTaskCommand(job: Job): string {
   const invocation = getWindowsInvocation(job)
-  return [invocation.command, ...invocation.args].map((arg) => quoteWindowsArg(arg)).join(" ")
+  const base = [invocation.command, ...invocation.args].map((arg) => quoteWindowsArg(arg)).join(" ")
+  const logPath = getLogPath(job)
+  return `cmd.exe /c "${base} >> ${quoteWindowsArg(logPath)} 2>&1"`
 }
 
 function maybeStep(field: string): number | null {
