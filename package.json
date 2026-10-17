@@ -1,7 +1,7 @@
 {
   "name": "opencode-scheduler",
-  "version": "1.3.0",
-  "description": "OpenCode plugin for scheduling recurring jobs using launchd, systemd, Task Scheduler, or cron fallback",
+  "version": "2.0.0-alpha.1",
+  "description": "OpenCode v2 plugin for scheduling recurring jobs: durable run claims, supervised no-overlap execution, and OS scheduler adapters (schtasks, systemd, cron, launchd)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -15,12 +15,8 @@
     }
   },
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target bun --format esm && tsc --emitDeclarationOnly",
-    "clean": "rm -rf dist",
-    "prepublishOnly": "bun run clean && bun run build",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish",
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
@@ -28,8 +24,9 @@
     "plugin",
     "scheduler",
     "cron",
-    "launchd",
+    "schtasks",
     "systemd",
+    "launchd",
     "automation",
     "jobs"
   ],
@@ -37,20 +34,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/different-ai/opencode-scheduler.git"
+    "url": "git+https://github.com/CENFARG/opencode-scheduler.git"
   },
   "bugs": {
-    "url": "https://github.com/different-ai/opencode-scheduler/issues"
+    "url": "https://github.com/CENFARG/opencode-scheduler/issues"
   },
-  "homepage": "https://github.com/different-ai/opencode-scheduler#readme",
+  "homepage": "https://github.com/CENFARG/opencode-scheduler#readme",
   "dependencies": {
-    "@opencode-ai/plugin": "^1.0.162"
+    "@opencode/plugin": "^2.0.0"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "typescript": "^5.7.3"
-  },
-  "peerDependencies": {
-    "@opencode-ai/plugin": ">=1.0.0"
+    "@types/node": "22.10.5",
+    "typescript": "5.7.3",
+    "vitest": "2.1.9"
   }
 }
