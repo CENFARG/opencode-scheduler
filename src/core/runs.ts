@@ -11,7 +11,7 @@ export interface JsonStorage {
   set(key: string, value: unknown): Promise<void>
   remove(key: string): Promise<void>
   scan(options: { prefix: string; after?: string; limit?: number }): Promise<{
-    entries: { key: string; value: unknown }[]
+    entries: readonly { key: string; value: unknown }[]
     next?: string
   }>
 }
